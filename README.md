@@ -1,36 +1,135 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
 
-## Getting Started
+<img src="public/logo.png" alt="Aboard Study Assist Link" width="180" />
 
-First, run the development server:
+# 🎓 Aboard Study Assist Link
+
+**Bangladesh's most trusted study abroad consultancy platform**  
+Expert university admissions & 100% visa assistance for Malaysia — since 2015.
+
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-aboard--study.vercel.app-blue?style=for-the-badge)](https://aboard-study.vercel.app)
+[![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
+[![Vercel](https://img.shields.io/badge/Deployed_on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com)
+
+</div>
+
+---
+
+## ✨ Features
+
+- 🏠 **Hero Section** — Animated landing with stats, CTA, and floating cards
+- 🏛️ **University Grid** — Browse 50+ partner universities with filters
+- 🌍 **Destinations** — Explore study destinations by country
+- 📖 **Success Stories** — Swiper-powered student story slider
+- 📊 **Stats Counter** — Animated counters triggered on scroll
+- 🎖️ **Recognitions** — Infinite logo marquee (British Council, EMGS, IDP, MQA, UCAS)
+- 📝 **Registration Form** — Free consultation booking form
+- 📍 **Footer** — Dual office contacts (Dhaka & KL), WhatsApp CTA, social links
+- ⬆️ **Scroll-to-Top** — Circular progress ring button
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology | Purpose |
+|---|---|
+| [Next.js 15](https://nextjs.org) | React framework (App Router) |
+| [TypeScript](https://typescriptlang.org) | Type safety |
+| [Tailwind CSS v4](https://tailwindcss.com) | Utility-first styling |
+| [Framer Motion](https://www.framer.com/motion) | Animations |
+| [Swiper.js](https://swiperjs.com) | Touch slider |
+| [Lucide React](https://lucide.dev) | Icons |
+| [react-world-flags](https://github.com/smucode/react-world-flags) | Country flag components |
+| [next-themes](https://github.com/pacocoursey/next-themes) | Theme management |
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js `v18+`
+- npm or yarn
+
+### Installation
 
 ```bash
+# 1. Clone the repository
+git clone https://github.com/fahimhossainmunna/Aboard-Study.git
+
+# 2. Navigate to project directory
+cd Aboard-Study
+
+# 3. Install dependencies
+npm install
+
+# 4. Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📁 Project Structure
 
-## Learn More
+```
+src/
+├── app/
+│   ├── layout.tsx          # Root layout with ThemeProvider
+│   └── page.tsx            # Home page
+├── components/
+│   ├── Navbar.tsx
+│   ├── Hero.tsx
+│   ├── Stats.tsx
+│   ├── UniversityGrid.tsx
+│   ├── Destinations.tsx
+│   ├── SuccessStories.tsx
+│   ├── WhyChooseUs.tsx
+│   ├── Recognitions.tsx
+│   ├── RegistrationForm.tsx
+│   ├── Footer.tsx
+│   └── ScrollToTop.tsx
+├── hooks/
+│   ├── useNavbar.ts
+│   ├── useHeroData.ts
+│   └── useUniversityData.ts
+└── assets/                 # Images and logos
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🌐 Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This project is deployed on **Vercel**.
 
-## Deploy on Vercel
+```bash
+# Build for production
+npm run build
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Start production server
+npm start
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Push to `main` branch → Vercel auto-deploys. ✅
+
+---
+
+## 📞 Contact
+
+| Office | Details |
+|---|---|
+| 🇧🇩 **Dhaka** | Banani, Dhaka-1213, Bangladesh |
+| 🇲🇾 **Kuala Lumpur** | KLCC, 50088 Kuala Lumpur, Malaysia |
+| 📱 **WhatsApp** | [+60 16-749 5926](https://wa.me/60167495926) |
+| 📧 **Email** | info@aboardstudy.com |
+
+---
+
+<div align="center">
+Developed with ❤️ by Fahim Hossain Munna  
+© 2026 Aboard Study Assist Link. All rights reserved.
+
+</div>
