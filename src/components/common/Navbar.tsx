@@ -18,7 +18,10 @@ const Navbar = () => {
   // Close dropdown on outside click
   useEffect(() => {
     const handler = (e: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target as Node)
+      ) {
         setActiveDropdown(null);
       }
     };
@@ -65,38 +68,48 @@ const Navbar = () => {
       <div className="hidden lg:block bg-sky-900 bg-slate-900 text-white text-xs">
         <div className="max-w-7xl mx-auto px-6 py-2 flex justify-between items-center">
           <div className="flex items-center gap-6">
-            <a href="tel:+60167495926" className="flex items-center gap-1.5 hover:text-blue-100 transition-colors">
+            <a
+              href="tel:+60167495926"
+              className="flex items-center gap-1.5 hover:text-blue-100 transition-colors"
+            >
               <Phone size={11} />
               <span>+60 16-749 5926</span>
             </a>
-            <a href="mailto:info@aboardstudy.com" className="flex items-center gap-1.5 hover:text-blue-100 transition-colors">
+            <a
+              href="mailto:info@aboardstudy.com"
+              className="flex items-center gap-1.5 hover:text-blue-100 transition-colors"
+            >
               <Mail size={11} />
               <span>info@aboardstudy.com</span>
             </a>
           </div>
-          <p className="text-blue-100 font-medium tracking-wide">🎓 Study in Malaysia — Made Easy</p>
+          <p className="text-blue-100 font-medium tracking-wide">
+            🎓 Study in Malaysia — Made Easy
+          </p>
         </div>
       </div>
 
       {/* ── Main Navbar ── */}
       <nav
         className={`sticky top-0 w-full z-50 transition-all duration-300 bg-white
-          ${scrolled
-            ? "shadow-[0_2px_20px_rgba(0,0,0,0.08)] border-b border-slate-100"
-            : "border-b border-slate-100"
+          ${
+            scrolled
+              ? "shadow-[0_2px_20px_rgba(0,0,0,0.08)] border-b border-slate-100"
+              : "border-b border-slate-100"
           }
         `}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-[70px]">
-
             {/* ── Logo ── */}
             <Link
               href="/"
               className="flex-shrink-0 group"
               onClick={(e) => {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: "smooth" });
+                if (window.location.pathname === "/") {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }
               }}
             >
               <Image
@@ -110,8 +123,10 @@ const Navbar = () => {
             </Link>
 
             {/* ── Desktop Nav ── */}
-            <div ref={dropdownRef} className="hidden lg:flex items-center gap-1">
-
+            <div
+              ref={dropdownRef}
+              className="hidden lg:flex items-center gap-1"
+            >
               <Link
                 href="/"
                 className="px-4 py-2 text-[14.5px] font-semibold text-slate-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-150"
@@ -150,7 +165,10 @@ const Navbar = () => {
                         <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-slate-400">
                           Choose Your Destination
                         </p>
-                        <Link href="/countries" className="text-xs font-semibold text-blue-600 hover:underline">
+                        <Link
+                          href="/countries"
+                          className="text-xs font-semibold text-blue-600 hover:underline"
+                        >
                           View All →
                         </Link>
                       </div>
@@ -163,7 +181,10 @@ const Navbar = () => {
                             onClick={() => setActiveDropdown(null)}
                           >
                             <div className="w-8 h-[22px] overflow-hidden rounded flex-shrink-0 shadow-sm ring-1 ring-black/5">
-                              <Flag code={c.code} className="w-full h-full object-cover" />
+                              <Flag
+                                code={c.code}
+                                className="w-full h-full object-cover"
+                              />
                             </div>
                             <span className="text-[13px] font-semibold text-slate-600 group-hover/item:text-blue-600 leading-tight">
                               {c.name}
@@ -210,7 +231,9 @@ const Navbar = () => {
                           className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:bg-blue-50 hover:text-blue-600 transition-all duration-150"
                           onClick={() => setActiveDropdown(null)}
                         >
-                          <span className="text-base leading-none">{a.icon}</span>
+                          <span className="text-base leading-none">
+                            {a.icon}
+                          </span>
                           {a.name}
                         </Link>
                       ))}
@@ -253,7 +276,9 @@ const Navbar = () => {
                           className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:bg-blue-50 hover:text-blue-600 transition-all duration-150"
                           onClick={() => setActiveDropdown(null)}
                         >
-                          <span className="text-base leading-none">{u.icon}</span>
+                          <span className="text-base leading-none">
+                            {u.icon}
+                          </span>
                           {u.name}
                         </Link>
                       ))}
@@ -300,11 +325,23 @@ const Navbar = () => {
             >
               <AnimatePresence mode="wait">
                 {isOpen ? (
-                  <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.15 }}>
+                  <motion.div
+                    key="close"
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                    transition={{ duration: 0.15 }}
+                  >
                     <X size={22} />
                   </motion.div>
                 ) : (
-                  <motion.div key="open" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.15 }}>
+                  <motion.div
+                    key="open"
+                    initial={{ rotate: 90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: -90, opacity: 0 }}
+                    transition={{ duration: 0.15 }}
+                  >
                     <Menu size={22} />
                   </motion.div>
                 )}
@@ -324,7 +361,6 @@ const Navbar = () => {
               className="lg:hidden overflow-hidden border-t border-slate-100 bg-white"
             >
               <div className="flex flex-col px-4 pt-2 pb-6 max-h-[80vh] overflow-y-auto">
-
                 <Link
                   href="/"
                   className="py-3.5 px-2 font-semibold text-slate-700 border-b border-slate-100 hover:text-blue-600 transition-colors"
@@ -347,7 +383,10 @@ const Navbar = () => {
                             onClick={() => setIsOpen(false)}
                           >
                             <div className="w-6 h-4 overflow-hidden rounded flex-shrink-0 ring-1 ring-black/5">
-                              <Flag code={c.code} className="w-full h-full object-cover" />
+                              <Flag
+                                code={c.code}
+                                className="w-full h-full object-cover"
+                              />
                             </div>
                             {c.name}
                           </Link>
@@ -402,10 +441,11 @@ const Navbar = () => {
                         animate={{ rotate: activeMobileMenu === key ? 180 : 0 }}
                         transition={{ duration: 0.2 }}
                       >
-                        {activeMobileMenu === key
-                          ? <Minus size={18} className="text-blue-600" />
-                          : <Plus size={18} className="text-slate-400" />
-                        }
+                        {activeMobileMenu === key ? (
+                          <Minus size={18} className="text-blue-600" />
+                        ) : (
+                          <Plus size={18} className="text-slate-400" />
+                        )}
                       </motion.span>
                     </button>
                     <AnimatePresence>
@@ -424,10 +464,18 @@ const Navbar = () => {
                   </div>
                 ))}
 
-                <Link href="/blog" className="py-3.5 px-2 font-semibold text-slate-700 border-b border-slate-100 hover:text-blue-600 transition-colors" onClick={() => setIsOpen(false)}>
+                <Link
+                  href="/blog"
+                  className="py-3.5 px-2 font-semibold text-slate-700 border-b border-slate-100 hover:text-blue-600 transition-colors"
+                  onClick={() => setIsOpen(false)}
+                >
                   Blog
                 </Link>
-                <Link href="/contact" className="py-3.5 px-2 font-semibold text-slate-700 border-b border-slate-100 hover:text-blue-600 transition-colors" onClick={() => setIsOpen(false)}>
+                <Link
+                  href="/contact"
+                  className="py-3.5 px-2 font-semibold text-slate-700 border-b border-slate-100 hover:text-blue-600 transition-colors"
+                  onClick={() => setIsOpen(false)}
+                >
                   Contacts
                 </Link>
 
@@ -450,14 +498,19 @@ const Navbar = () => {
 
                 {/* Mobile contact info */}
                 <div className="mt-5 pt-4 border-t border-slate-100 flex flex-col gap-2">
-                  <a href="tel:+60167495926" className="flex items-center gap-2 text-sm text-slate-500 hover:text-blue-600 transition-colors">
+                  <a
+                    href="tel:+60167495926"
+                    className="flex items-center gap-2 text-sm text-slate-500 hover:text-blue-600 transition-colors"
+                  >
                     <Phone size={14} /> +60 16-749 5926
                   </a>
-                  <a href="mailto:info@aboardstudy.com" className="flex items-center gap-2 text-sm text-slate-500 hover:text-blue-600 transition-colors">
+                  <a
+                    href="mailto:info@aboardstudy.com"
+                    className="flex items-center gap-2 text-sm text-slate-500 hover:text-blue-600 transition-colors"
+                  >
                     <Mail size={14} /> info@aboardstudy.com
                   </a>
                 </div>
-
               </div>
             </motion.div>
           )}
