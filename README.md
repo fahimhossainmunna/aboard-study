@@ -129,8 +129,7 @@ Push to `main` branch → Vercel auto-deploys. ✅
 ---
 
 <div align="center">
-
-Made with ❤️ by the **Aboard Study** team  
+Developed with ❤️ by Fahim Hossain Munna  
 © 2026 Aboard Study Assist Link. All rights reserved.
 
 </div>
