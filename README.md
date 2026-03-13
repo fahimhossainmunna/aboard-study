@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌍 Aboard Study Assist Link
 
-## Getting Started
+A premium, modern, and high-performance educational consultancy website for **Aboard Study**, built with **Next.js 15**, **Tailwind CSS**, and **Framer Motion**. This platform is designed to help students find their path to higher education in Malaysia with ease.
 
-First, run the development server:
+## 🚀 Live Demo
+[Add your deployment link here, e.g., Vercel Link]
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ✨ Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Smooth Scrolling:** Buttery smooth scrolling experience powered by **Lenis**.
+- **Responsive Design:** Fully optimized for all screen sizes (Mobile, Tablet, Desktop).
+- **Interactive UI:** Engaging animations using **Framer Motion**.
+- **Dynamic University Grid:** Browse top Malaysian universities with ease.
+- **Success Stories:** Interactive slider for student testimonials.
+- **Auto-Scrolling Logo Carousel:** Showcasing partner recognitions and accreditations.
+- **Consultation Form:** Advanced student registration form for lead generation.
+- **Scroll To Top:** Premium floating button for easy navigation.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Framework:** Next.js 15 (App Router)
+- **Styling:** Tailwind CSS
+- **Animations:** Framer Motion
+- **State Management:** Redux Toolkit
+- **Icons:** Lucide React
+- **Slider:** Swiper.js
+- **Scrolling:** Lenis Smooth Scroll
 
-## Learn More
+## 📦 Installation & Setup
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/fahimhossainmunna/students.git](https://github.com/fahimhossainmunna/students.git)
