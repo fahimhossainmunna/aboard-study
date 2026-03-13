@@ -79,7 +79,7 @@ const Hero = () => {
             >
               <Link
                 href="/apply"
-                className="group inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl font-bold text-[15px] shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 hover:-translate-y-0.5 active:scale-95 transition-all duration-200"
+                className="group inline-flex items-center justify-center gap-2 bg-slate-900 hover:bg-blue-600  text-white px-8 py-4 rounded-2xl font-bold text-[15px] shadow-lg shadow-slate-500 hover:shadow-blue-500/40 hover:-translate-y-0.5 active:scale-95 transition-all duration-500"
               >
                 Apply for 2026 Intake
                 <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-200" />
@@ -87,7 +87,7 @@ const Hero = () => {
 
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-white border-2 border-slate-200 hover:border-blue-400 text-slate-700 hover:text-blue-600 px-8 py-4 rounded-2xl font-bold text-[15px] hover:-translate-y-0.5 active:scale-95 transition-all duration-200"
+                className="inline-flex items-center justify-center gap-2 bg-white border-2 border-slate-200 hover:border-slate-900 text-blue-600 hover:text-slate-600 px-8 py-4 rounded-2xl font-bold text-[15px] hover:-translate-y-0.5 active:scale-95 transition-all duration-200"
               >
                 Free Consultation
               </Link>

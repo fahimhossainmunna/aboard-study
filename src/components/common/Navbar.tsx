@@ -62,7 +62,7 @@ const Navbar = () => {
   return (
     <>
       {/* ── Top Info Bar ── */}
-      <div className="hidden lg:block bg-blue-600 text-white text-xs">
+      <div className="hidden lg:block bg-sky-900 bg-slate-900 text-white text-xs">
         <div className="max-w-7xl mx-auto px-6 py-2 flex justify-between items-center">
           <div className="flex items-center gap-6">
             <a href="tel:+60167495926" className="flex items-center gap-1.5 hover:text-blue-100 transition-colors">
@@ -286,7 +286,7 @@ const Navbar = () => {
               </Link>
               <Link
                 href="/apply"
-                className="px-6 py-2.5 text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-full shadow-md shadow-blue-500/25 hover:shadow-blue-500/40 hover:-translate-y-0.5 active:scale-95 transition-all duration-150"
+                className="px-6 py-2.5 text-sm font-bold text-white bg-slate-900 hover:bg-blue-600 rounded-full shadow-md shadow-slate-900/20 hover:shadow-blue-600 hover:-translate-y-0.5 active:scale-95 transition-all duration-150"
               >
                 Apply Now
               </Link>
@@ -441,7 +441,7 @@ const Navbar = () => {
                   </Link>
                   <Link
                     href="/apply"
-                    className="w-full text-center py-3 rounded-xl font-bold text-white bg-blue-600 hover:bg-blue-700 shadow-md shadow-blue-500/20 active:scale-95 transition-all"
+                    className="w-full text-center py-3 rounded-xl font-bold text-white bg-slate-900 hover:bg-blue-900 shadow-md shadow-blue-500/20 active:scale-95 transition-all"
                     onClick={() => setIsOpen(false)}
                   >
                     Apply Now

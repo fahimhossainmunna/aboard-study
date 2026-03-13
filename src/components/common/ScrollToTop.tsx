@@ -60,7 +60,7 @@ const ScrollToTop = () => {
               strokeWidth="2.5"
             />
             {/* Progress */}
-            <circle
+             <circle
               cx="28"
               cy="28"
               r={radius}
@@ -75,7 +75,7 @@ const ScrollToTop = () => {
           </svg>
 
           {/* Button bg */}
-          <div className="absolute inset-1.5 rounded-full bg-blue-600 group-hover:bg-blue-500 shadow-[0_8px_32px_rgba(37,99,235,0.5)] group-hover:shadow-[0_12px_40px_rgba(37,99,235,0.65)] transition-all duration-300" />
+          <div className="absolute inset-1.5 rounded-full bg-slate-900 group-hover:bg-blue-500 shadow-[0_8px_32px_rgba(37,99,235,0.5)] group-hover:shadow-[0_12px_40px_rgba(37,99,235,0.65)] transition-all duration-300" />
 
           {/* Glow pulse */}
           <div className="absolute inset-1.5 rounded-full bg-blue-400 opacity-0 group-hover:opacity-20 blur-sm transition-opacity duration-300" />

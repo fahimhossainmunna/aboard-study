@@ -128,7 +128,7 @@ const SuccessStories = () => {
 
             <Link
               href="/stories"
-              className="group inline-flex items-center gap-2.5 w-fit bg-blue-600 hover:bg-blue-700 text-white px-7 py-3.5 rounded-2xl font-bold text-[14px] shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 hover:-translate-y-0.5 active:scale-95 transition-all duration-200"
+              className="group inline-flex items-center gap-2.5 w-fit bg-slate-900 hover:bg-blue-600 text-white px-7 py-3.5 rounded-2xl font-bold text-[14px] shadow-lg shadow-slate-500 hover:shadow-blue-500/40 hover:-translate-y-0.5 active:scale-95 transition-all duration-200"
             >
               View All Stories
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-200" />

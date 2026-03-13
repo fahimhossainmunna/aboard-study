@@ -117,14 +117,14 @@ const WhyChooseUs = () => {
             <div className="flex flex-col sm:flex-row gap-3 pt-1">
               <Link
                 href="/contact"
-                className="group inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl font-bold text-[15px] shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 hover:-translate-y-0.5 active:scale-95 transition-all duration-200 w-fit"
+                className="group inline-flex items-center justify-center gap-2 bg-slate-900 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl font-bold text-[15px] shadow-lg shadow-slate-400 hover:shadow-blue-500/40 hover:-translate-y-0.5 active:scale-95 transition-all duration-200 w-fit"
               >
                 Talk to an Expert
                 <ArrowRight size={17} className="group-hover:translate-x-1 transition-transform duration-200" />
               </Link>
               <Link
                 href="/about"
-                className="inline-flex items-center justify-center gap-2 bg-white border-2 border-slate-200 hover:border-blue-300 text-slate-600 hover:text-blue-600 px-8 py-4 rounded-2xl font-bold text-[15px] hover:-translate-y-0.5 active:scale-95 transition-all duration-200 w-fit"
+                className="inline-flex items-center justify-center gap-2 bg-white border-2 border-slate-500 hover:border-blue-600 text-slate-600 hover:text-blue-600 px-8 py-4 rounded-2xl font-bold text-[15px] hover:-translate-y-0.5 active:scale-95 transition-all duration-200 w-fit"
               >
                 Learn More
               </Link>

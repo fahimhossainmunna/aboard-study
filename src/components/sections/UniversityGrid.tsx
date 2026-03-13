@@ -127,7 +127,7 @@ const UniversityGrid = () => {
         >
           <Link
             href="/universities"
-            className="group inline-flex items-center gap-2.5 bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-2xl font-bold text-[15px] shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 hover:-translate-y-0.5 active:scale-95 transition-all duration-200"
+            className="group inline-flex items-center gap-2.5 bg-slate-900 hover:bg-blue-600 text-white px-10 py-4 rounded-2xl font-bold text-[15px] shadow-lg shadow-slate-700 hover:shadow-blue-500/40 hover:-translate-y-0.5 active:scale-95 transition-all duration-200"
           >
             Explore All Universities
             <ArrowRight size={17} className="group-hover:translate-x-1 transition-transform duration-200" />
