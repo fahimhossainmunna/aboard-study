@@ -32,9 +32,9 @@ const Navbar = () => {
   const menuItems = {
     about: [
       { name: "About Us", href: "/about", icon: "🏢" },
-      { name: "Our Mission", href: "/about/mission", icon: "🎯" },
-      { name: "Our Team", href: "/about/team", icon: "👥" },
-      { name: "Success Stories", href: "/about/stories", icon: "⭐" },
+      { name: "Our Mission", href: "/about/ourmission", icon: "🎯" },
+      { name: "Our Team", href: "/about/ourteam", icon: "👥" },
+      { name: "Success Stories", href: "/about/success-stories", icon: "⭐" },
     ],
     countries: [
       { name: "Canada", code: "CA" },
@@ -51,10 +51,10 @@ const Navbar = () => {
       { name: "France", code: "FR" },
     ],
     universities: [
-      { name: "Public Universities", href: "/uni/public", icon: "🏛️" },
-      { name: "Private Universities", href: "/uni/private", icon: "🎓" },
-      { name: "Scholarships", href: "/uni/scholarships", icon: "💰" },
-      { name: "Entry Requirements", href: "/uni/requirements", icon: "📋" },
+      { name: "Public Universities", href: "/universities/publicUnivercity", icon: "🏛️" },
+      { name: "Private Universities", href: "/universities/privateUnivercity", icon: "🎓" },
+      { name: "Scholarships", href: "/universities/scholarships", icon: "💰" },
+      { name: "Entry Requirements", href: "/universities/requirements", icon: "📋" },
     ],
   };
 

@@ -6,6 +6,8 @@ import { ThemeProvider } from "@/store/ThemeProvider";
 import Navbar from "@/components/common/Navbar";
 import SmoothScroll from "@/components/common/SmoothScroll"; // SmoothScroll import korun
 import ScrollToTop from "@/components/common/ScrollToTop";
+import WhatsAppButton from "@/components/common/WhatsAppButton";
+import Footer from "@/components/common/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,8 +36,10 @@ export default function RootLayout({
               <main className="bg-white min-h-screen">
                 {children}
               </main>
+              <WhatsAppButton/>
               <ScrollToTop/>
             </SmoothScroll>
+            <Footer/>
           </ThemeProvider>
         </ReduxProvider>
       </body>

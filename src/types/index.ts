@@ -51,7 +51,7 @@ export interface Destination {
 // ─────────────────────────────────────────
 // 5. Registration Form Type
 // ─────────────────────────────────────────
-export interface RegistrationFormData {
+ export interface RegistrationFormData {
   fullName: string;
   email: string;
   phone: string;

@@ -20,7 +20,6 @@ const Home = () => {
         <Destinations/>
         <Recognitions/>
         <RegistrationForm/>
-        <Footer/>
     </div>
   )
 }

@@ -127,7 +127,7 @@ const SuccessStories = () => {
             </div>
 
             <Link
-              href="/stories"
+              href="/about/success-stories"
               className="group inline-flex items-center gap-2.5 w-fit bg-slate-900 hover:bg-blue-600 text-white px-7 py-3.5 rounded-2xl font-bold text-[14px] shadow-lg shadow-slate-500 hover:shadow-blue-500/40 hover:-translate-y-0.5 active:scale-95 transition-all duration-200"
             >
               View All Stories
