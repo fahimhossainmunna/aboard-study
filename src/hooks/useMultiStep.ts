@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, Dispatch, SetStateAction } from "react";
 
 interface UseMultiStepReturn {
   currentStep: number;
@@ -7,6 +7,7 @@ interface UseMultiStepReturn {
   isFirst: boolean;
   isLast: boolean;
   submitted: boolean;
+  setSubmitted: Dispatch<SetStateAction<boolean>>;
   handleNext: () => void;
   handleBack: () => void;
   handleSubmit: () => void;
@@ -40,6 +41,7 @@ export function useMultiStep(totalSteps: number): UseMultiStepReturn {
     isFirst: currentStep === 1,
     isLast: currentStep === totalSteps,
     submitted,
+    setSubmitted,
     handleNext,
     handleBack,
     handleSubmit,
