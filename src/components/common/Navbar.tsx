@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Menu, X, ChevronDown, Plus, Minus, Phone, Mail } from "lucide-react";
 import Flag from "react-world-flags";
 import { motion, AnimatePresence } from "framer-motion";
-import logoImg from "@/assets/logoo.png";
+import logoImg from "@/assets/logo.png";
 import { useNavbar } from "@/hooks/useNavbar";
 
 const Navbar = () => {

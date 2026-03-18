@@ -96,7 +96,7 @@ const Destinations = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <Link
-                href={`/country/${country.name.toLowerCase().replace(/ /g, "-")}`}
+                href={`/countries/${country.name.toLowerCase().replace(/ /g, "-")}`}
                 className="group relative flex flex-col h-full bg-white border border-slate-100 rounded-[26px] p-7 overflow-hidden shadow-sm hover:bg-blue-600 hover:border-blue-500 hover:shadow-[0_20px_60px_rgba(37,99,235,0.25)] hover:-translate-y-1.5 transition-all duration-300"
               >
                 {/* Inner glow on hover */}

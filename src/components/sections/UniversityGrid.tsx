@@ -67,7 +67,7 @@ const UniversityGrid = () => {
               transition={{ duration: 0.5, delay: index * 0.08 }}
             >
               <Link
-                href={`/university/${uni.id}`}
+                href={`/universities/${uni.id}`}
                 className="group flex flex-col bg-white rounded-[24px] overflow-hidden border border-slate-100 shadow-sm hover:shadow-[0_16px_48px_rgba(0,0,0,0.1)] hover:-translate-y-1.5 transition-all duration-300 h-full"
               >
                 {/* Image */}
