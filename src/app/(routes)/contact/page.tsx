@@ -296,7 +296,7 @@ export default function ContactPage() {
       </section>
 
       {/* ── CTA ── */}
-      <section className="py-20 bg-blue-600 mx-5 sm:mx-8 lg:mx-10 mb-10 rounded-[5px] relative overflow-hidden">
+      <section className="py-20 bg-slate-900 mx-5 sm:mx-8 lg:mx-10 mb-10 rounded-[5px] relative overflow-hidden">
         <div className="absolute -top-16 -right-16 w-56 h-56 rounded-full bg-white/5 pointer-events-none" />
         <div className="relative z-10 text-center max-w-xl mx-auto px-5">
           <motion.div {...fadeUp()}>
