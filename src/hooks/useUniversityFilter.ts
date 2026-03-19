@@ -4,6 +4,13 @@ import { useState, useMemo } from "react";
 export type UniversityType = "All" | "Public" | "Private" | "Branch";
 
 export interface UniversityItem {
+  duration: ReactNode;
+  fees: ReactNode;
+  website: string | undefined;
+  about: ReactNode;
+  courses: any;
+  highlights: any;
+  intake: any;
   name: string;
   location: string;
   type: "Public" | "Private" | "Branch";
