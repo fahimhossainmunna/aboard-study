@@ -3,12 +3,16 @@
 import { useGetAllApplicationsQuery } from "@/store/api/applicationApi";
 import { 
   Mail, Phone, GraduationCap, 
-  User, Loader2, Search, MoreVertical 
+  User, Loader2, Search, MoreVertical, X 
 } from "lucide-react";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 const AdminApplications = () => {
   const { data: applications, isLoading, isError } = useGetAllApplicationsQuery();
+  
+  // ── SEARCH STATE ──
+  const [searchTerm, setSearchTerm] = useState("");
 
   if (isLoading) {
     return (
@@ -26,17 +30,40 @@ const AdminApplications = () => {
     );
   }
 
+  // ── SEARCH LOGIC ──
+  // Data array-ta kothay ache check kore filter kora (Name, Email ba Phone diye search kora jabe)
+  const allApps = (applications as any)?.data || [];
+  
+  const filteredApps = allApps.filter((app: any) => 
+    app.fullName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    app.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    app.phone?.includes(searchTerm)
+  );
+
   return (
     <div className="p-6 bg-slate-50 min-h-screen">
-      {/* Header Section */}
+      {/* Header & Search Bar */}
       <div className="mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">Student Applications</h1>
-          <p className="text-sm text-slate-500 font-medium">Manage and review all study abroad applications.</p>
+          <p className="text-sm text-slate-500 font-medium">Total: {filteredApps.length} applications found</p>
         </div>
-        <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-xl border border-slate-200 shadow-sm">
-          <Search size={16} className="text-slate-400" />
-          <input type="text" placeholder="Search students..." className="bg-transparent border-none outline-none text-sm font-medium w-48" />
+
+        {/* Search Input Field */}
+        <div className="flex items-center gap-3 bg-white px-4 py-2.5 rounded-xl border border-slate-200 shadow-sm focus-within:ring-2 focus-within:ring-blue-500/20 focus-within:border-blue-500 transition-all">
+          <Search size={18} className="text-slate-400" />
+          <input 
+            type="text" 
+            placeholder="Search by name, email or phone..." 
+            className="bg-transparent border-none outline-none text-sm font-medium w-64 text-slate-700"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          {searchTerm && (
+            <button onClick={() => setSearchTerm("")} className="text-slate-400 hover:text-slate-600">
+              <X size={14} />
+            </button>
+          )}
         </div>
       </div>
 
@@ -52,16 +79,14 @@ const AdminApplications = () => {
               <tr className="bg-slate-50/50 border-b border-slate-100">
                 <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest">Student Info</th>
                 <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest">Academic</th>
-                <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest">Choice</th>
+                <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest">University & Course</th>
                 <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest">Status</th>
                 <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest text-center">Action</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
-              {/* Force casting to any to avoid build-time type errors from backend response */}
-              {(applications as any)?.data?.map((app: any) => (
+              {filteredApps.map((app: any) => (
                 <tr key={app._id} className="hover:bg-slate-50/50 transition-colors group">
-                  {/* Name & Contact */}
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
                       <div className="w-9 h-9 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 font-bold text-sm">
@@ -77,18 +102,16 @@ const AdminApplications = () => {
                     </div>
                   </td>
 
-                  {/* Academic Background */}
                   <td className="px-6 py-4">
                     <div className="flex flex-col gap-1">
                       <div className="flex items-center gap-1.5 text-xs font-bold text-slate-600">
                         <GraduationCap size={13} className="text-blue-500" />
                         {app.qualification}
                       </div>
-                      <p className="text-[11px] font-bold text-slate-400 ml-[19px]">Result: {app.result}</p>
+                      <p className="text-[11px] font-bold text-slate-400 ml-[19px]">GPA: {app.result}</p>
                     </div>
                   </td>
 
-                  {/* University & Course */}
                   <td className="px-6 py-4">
                     <div className="flex flex-col">
                       <p className="text-sm font-bold text-slate-700 leading-tight mb-1">{app.university}</p>
@@ -96,16 +119,14 @@ const AdminApplications = () => {
                     </div>
                   </td>
 
-                  {/* Status Badge */}
                   <td className="px-6 py-4">
-                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-yellow-50 text-yellow-600 border border-yellow-100">
+                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-yellow-50 text-yellow-600 border border-yellow-100">
                       Pending
                     </span>
                   </td>
 
-                  {/* Action Menu */}
                   <td className="px-6 py-4 text-center">
-                    <button className="p-2 hover:bg-slate-100 rounded-lg transition-colors text-slate-400 hover:text-slate-600">
+                    <button className="p-2 hover:bg-slate-100 rounded-lg text-slate-400 hover:text-slate-600 transition-colors">
                       <MoreVertical size={18} />
                     </button>
                   </td>
@@ -115,11 +136,14 @@ const AdminApplications = () => {
           </table>
         </div>
 
-        {/* Empty State Logic */}
-        {(!(applications as any)?.data || (applications as any)?.data?.length === 0) && (
-          <div className="px-6 py-12 text-center">
-            <User size={40} className="mx-auto text-slate-200 mb-3" />
-            <p className="text-slate-500 font-medium text-sm">No applications found in the database.</p>
+        {/* Empty State (If search results found nothing) */}
+        {filteredApps.length === 0 && (
+          <div className="px-6 py-12 text-center bg-white">
+            <div className="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4 border border-slate-100">
+              <Search size={24} className="text-slate-300" />
+            </div>
+            <h3 className="text-slate-900 font-bold text-base mb-1">No applications found</h3>
+            <p className="text-slate-500 text-sm">We couldn't find any results matching "{searchTerm}"</p>
           </div>
         )}
       </motion.div>
