@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Flag from "react-world-flags";
-import { ArrowRight, MapPin } from "lucide-react";
+import { ArrowRight, MapPin, Globe2 } from "lucide-react";
 import Link from "next/link";
 
 const countries = [
@@ -51,7 +51,7 @@ const Destinations = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
 
         {/* ── Header ── */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-14">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -73,16 +73,36 @@ const Destinations = () => {
             </h2>
           </motion.div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-slate-400 text-[15px] leading-relaxed max-w-xs md:text-right"
-          >
-            We partner with globally recognized institutions to provide the best
-            education opportunities across the globe.
-          </motion.p>
+          {/* ── View All Countries Button (Header Right) ── */}
+          <div className="flex flex-col items-start md:items-end gap-4">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-slate-400 text-[15px] leading-relaxed max-w-xs md:text-right"
+            >
+              We partner with globally recognized institutions to provide the best
+              education opportunities across the globe.
+            </motion.p>
+            
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+               <Link 
+                href="/countries" 
+                className="group flex items-center gap-3 text-blue-600 font-bold uppercase tracking-widest text-[13px] hover:text-blue-700 transition-all duration-300"
+              >
+                View All Countries 
+                <span className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 shadow-sm">
+                  <ArrowRight size={18} className="group-hover:translate-x-0.5 transition-transform" />
+                </span>
+              </Link>
+            </motion.div>
+          </div>
         </div>
 
         {/* ── Cards ── */}
@@ -135,23 +155,6 @@ const Destinations = () => {
             </motion.div>
           ))}
         </div>
-
-        {/* ── View All ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-12 text-center"
-        >
-          <Link
-            href="/destinations"
-            className="group inline-flex items-center gap-2.5 text-slate-500 hover:text-blue-600 font-bold text-[15px] transition-colors duration-200"
-          >
-            View All Destinations
-            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-200" />
-          </Link>
-        </motion.div>
 
       </div>
     </section>

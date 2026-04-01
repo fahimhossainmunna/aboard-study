@@ -1,134 +1,245 @@
 "use client";
 
-import { useParams } from "next/navigation";
-import { useCountries } from "@/hooks/useCountries";
 import { motion } from "framer-motion";
-import { 
-  CheckCircle2, Info, GraduationCap, PlaneTakeoff, 
-  FileText, ShieldCheck, ArrowRight, MapPin, Search 
-} from "lucide-react";
 import Link from "next/link";
+import { useParams } from "next/navigation";
+import Flag from "react-world-flags";
+import {
+  ArrowLeft, ArrowRight, CheckCircle2, GraduationCap,
+  MapPin, Clock, BadgeDollarSign, Globe2, Phone, Mail,
+  BookOpen, Languages
+} from "lucide-react";
+import { getCountryBySlug } from "@/data/countriesData";
 
 const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
+  initial: { opacity: 0, y: 24 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
   transition: { duration: 0.5, delay, ease: "easeOut" as const },
 });
 
 export default function CountryDetailPage() {
-  const { slug } = useParams();
-  const { countryDetail, isLoading } = useCountries(slug as string);
+  const params = useParams();
+  const slug = params?.slug as string;
+  const country = getCountryBySlug(slug);
 
-  if (isLoading) return (
-    <div className="h-screen flex items-center justify-center">
-      <div className="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
-    </div>
-  );
+  if (!country) {
+    return (
+      <div className="min-h-screen bg-white flex flex-col items-center justify-center px-5 text-center pt-28">
+        <div className="w-16 h-16 rounded-[5px] bg-slate-100 flex items-center justify-center mb-6">
+          <Globe2 size={28} className="text-slate-300" />
+        </div>
+        <h1 className="text-2xl font-extrabold text-slate-800 mb-2">Country Not Found</h1>
+        <p className="text-slate-400 text-sm mb-6">We couldn't find details for this destination.</p>
+        <Link href="/countries" className="inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-700">
+          <ArrowLeft size={14} /> Back to Destinations
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-white min-h-screen">
-      
-      {/* ── 1. HERO SECTION ── */}
-      <section className="relative pt-32 pb-20 bg-slate-50 overflow-hidden">
+
+      {/* ── HERO ── */}
+      <section className="relative pt-28 pb-0 overflow-hidden bg-white">
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: "radial-gradient(circle, #1e40af 1px, transparent 1px)", backgroundSize: "30px 30px" }} />
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <motion.div {...fadeUp(0)} className="flex items-center gap-4 mb-6">
-            <span className="text-6xl">{countryDetail?.flag || "🌍"}</span>
-            <div className="h-12 w-[2px] bg-slate-200 mx-2" />
-            <h1 className="text-5xl md:text-7xl font-black text-slate-900 tracking-tight">
-              Study in <span className="text-blue-600">{countryDetail?.name || "Destination"}</span>
-            </h1>
-          </motion.div>
-          <motion.p {...fadeUp(0.1)} className="text-slate-500 text-xl font-medium max-w-3xl leading-relaxed">
-            {countryDetail?.description || "Explore world-class education systems and life-changing opportunities in this destination."}
-          </motion.p>
-        </div>
-      </section>
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-50 rounded-full blur-[120px] opacity-50 translate-x-1/3 -translate-y-1/3 pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 py-20 grid grid-cols-1 lg:grid-cols-3 gap-16">
-        
-        {/* ── LEFT COLUMN: DETAILS ── */}
-        <div className="lg:col-span-2 space-y-20">
-          
-          {/* Why Study Here */}
-          <motion.div {...fadeUp(0.2)} className="space-y-8">
-            <div className="flex items-center gap-3">
-              <div className="p-3 bg-blue-50 text-blue-600 rounded-2xl"><Info size={24} /></div>
-              <h2 className="text-3xl font-black text-slate-900">Why Choose {countryDetail?.name}?</h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="p-6 bg-white border border-slate-100 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow">
-                  <CheckCircle2 className="text-blue-600 mb-4" size={24} />
-                  <h4 className="font-black text-slate-900 mb-2">Benefit {i}</h4>
-                  <p className="text-slate-500 text-sm font-medium">Top-tier education with global recognition and great career prospects.</p>
-                </div>
-              ))}
-            </div>
-          </motion.div>
+        <div className="relative max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
 
-          {/* Admission Process (Stepper) */}
-          <motion.div {...fadeUp(0.3)} className="space-y-8">
-            <div className="flex items-center gap-3">
-              <div className="p-3 bg-amber-50 text-amber-600 rounded-2xl"><PlaneTakeoff size={24} /></div>
-              <h2 className="text-3xl font-black text-slate-900">Application Process</h2>
-            </div>
-            <div className="space-y-6 ml-4 border-l-2 border-slate-100 pl-8 relative">
-              {[
-                { t: "Counseling", d: "Talk to our experts about your goals." },
-                { t: "Application", d: "We help you apply to your dream uni." },
-                { t: "Visa Processing", d: "End-to-end guidance for your student visa." },
-                { t: "Pre-Departure", d: "Get ready for your flight and accommodation." }
-              ].map((step, i) => (
-                <div key={i} className="relative">
-                  <div className="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-white border-4 border-blue-600" />
-                  <h4 className="font-black text-xl text-slate-900">{step.t}</h4>
-                  <p className="text-slate-500 font-medium">{step.d}</p>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-
-        {/* ── RIGHT COLUMN: SIDEBAR ── */}
-        <aside className="space-y-8">
-          
-          {/* Requirement Card */}
-          <motion.div {...fadeUp(0.4)} className="p-8 bg-slate-900 rounded-[3rem] text-white space-y-6 sticky top-32 shadow-2xl shadow-blue-900/20">
-            <div className="flex items-center gap-3 border-b border-white/10 pb-6">
-              <FileText className="text-blue-400" size={28} />
-              <h3 className="text-2xl font-black">Requirements</h3>
-            </div>
-            <ul className="space-y-4">
-              {countryDetail?.requirements?.map((req: string, i: number) => (
-                <li key={i} className="flex items-start gap-3 text-slate-300 font-medium">
-                  <ShieldCheck size={18} className="text-blue-400 mt-1 flex-shrink-0" />
-                  <span>{req}</span>
-                </li>
-              )) || (
-                <li className="text-slate-400 italic">Requirements data will be fetched from API.</li>
-              )}
-            </ul>
-            <Link 
-              href="/apply" 
-              className="block w-full bg-blue-600 hover:bg-blue-700 text-white text-center py-4 rounded-2xl font-black transition-all active:scale-95"
-            >
-              Start My Application
+          {/* Back */}
+          <motion.div {...fadeUp(0)} className="mb-8">
+            <Link href="/" className="group inline-flex items-center gap-2 text-sm font-bold text-slate-400 hover:text-blue-600 transition-colors">
+              <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
+              Back to Home
             </Link>
           </motion.div>
 
-          {/* Quick Stats */}
-          <div className="p-8 bg-blue-50 rounded-[3rem] border border-blue-100">
-            <h4 className="font-black text-blue-900 mb-4">Quick Insights</h4>
-            <div className="space-y-4">
-              <div className="flex justify-between text-sm font-bold"><span className="text-blue-700">Intakes:</span> <span className="text-slate-900">Jan, May, Sept</span></div>
-              <div className="flex justify-between text-sm font-bold"><span className="text-blue-700">Currency:</span> <span className="text-slate-900">Local Currency</span></div>
-              <div className="flex justify-between text-sm font-bold"><span className="text-blue-700">Work Limit:</span> <span className="text-slate-900">20 Hrs/Week</span></div>
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 items-center">
+
+            {/* Left */}
+            <div className="lg:col-span-3">
+              <motion.div {...fadeUp(0.05)} className="flex items-center gap-3 mb-5">
+                <div className="w-10 h-7 rounded-[3px] overflow-hidden shadow-sm ring-1 ring-black/10">
+                  <Flag code={country.code} className="w-full h-full object-cover" />
+                </div>
+                <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Study Destination</span>
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.08, ease: "easeOut" as const }}
+                className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-4"
+              >
+                Study in{" "}
+                <span className="text-blue-600">{country.name}</span>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.14, ease: "easeOut" as const }}
+                className="text-slate-500 text-[16px] leading-relaxed mb-8 max-w-lg"
+              >
+                {country.tagline}
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" as const }}
+                className="flex flex-wrap gap-3"
+              >
+                <Link href="/apply" className="group inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3.5 rounded-[5px] font-bold text-sm shadow-lg shadow-blue-500/25 hover:-translate-y-0.5 transition-all duration-200">
+                  Apply Now <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <Link href="/contact" className="inline-flex items-center gap-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 px-6 py-3.5 rounded-[5px] font-bold text-sm transition-all duration-200">
+                  Free Consultation
+                </Link>
+              </motion.div>
+            </div>
+
+            {/* Right — Flag large */}
+            <motion.div
+              initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" as const }}
+              className="lg:col-span-2 relative h-56 rounded-[5px] overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.12)]"
+            >
+              <Flag code={country.code} className="w-full h-full object-cover" />
+            </motion.div>
+          </div>
+
+          {/* Highlights strip */}
+          <motion.div {...fadeUp(0.25)} className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-12 pb-0">
+            {country.highlights.map((h) => (
+              <div key={h.label} className="bg-slate-50 border border-slate-100 rounded-[5px] px-4 py-4 text-center">
+                <span className="text-2xl mb-2 block">{h.icon}</span>
+                <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1">{h.label}</p>
+                <p className="text-sm font-extrabold text-slate-800">{h.value}</p>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── MAIN CONTENT ── */}
+      <section className="py-16 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+            {/* Left col */}
+            <div className="lg:col-span-2 flex flex-col gap-6">
+
+              {/* About */}
+              <motion.div {...fadeUp()} className="bg-white border border-slate-100 rounded-[5px] p-7">
+                <h2 className="text-lg font-extrabold text-slate-800 mb-4">About Studying in {country.name}</h2>
+                <p className="text-slate-500 text-sm leading-relaxed">{country.about}</p>
+              </motion.div>
+
+              {/* Why Study */}
+              <motion.div {...fadeUp(0.1)} className="bg-white border border-slate-100 rounded-[5px] p-7">
+                <h2 className="text-lg font-extrabold text-slate-800 mb-5">Why Study in {country.name}?</h2>
+                <div className="flex flex-col gap-3">
+                  {country.whyStudy.map((reason) => (
+                    <div key={reason} className="group flex items-start gap-3 p-3 rounded-[5px] hover:bg-slate-50 transition-colors">
+                      <div className="w-7 h-7 rounded-[5px] bg-green-50 group-hover:bg-green-500 flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors duration-200">
+                        <CheckCircle2 size={13} className="text-green-500 group-hover:text-white transition-colors" />
+                      </div>
+                      <span className="text-sm font-semibold text-slate-600">{reason}</span>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* Top Universities */}
+              <motion.div {...fadeUp(0.15)} className="bg-white border border-slate-100 rounded-[5px] p-7">
+                <h2 className="text-lg font-extrabold text-slate-800 mb-5 flex items-center gap-2">
+                  <GraduationCap size={18} className="text-blue-500" /> Top Universities
+                </h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {country.topUniversities.map((uni) => (
+                    <div key={uni} className="group flex items-center gap-3 p-3 rounded-[5px] bg-slate-50 border border-slate-100 hover:border-blue-100 hover:bg-blue-50 transition-all duration-200">
+                      <div className="w-7 h-7 rounded-[5px] bg-blue-100 group-hover:bg-blue-600 flex items-center justify-center flex-shrink-0 transition-colors duration-200">
+                        <GraduationCap size={13} className="text-blue-600 group-hover:text-white transition-colors" />
+                      </div>
+                      <span className="text-sm font-semibold text-slate-600 group-hover:text-slate-800 leading-snug">{uni}</span>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* Popular Courses */}
+              <motion.div {...fadeUp(0.2)} className="bg-white border border-slate-100 rounded-[5px] p-7">
+                <h2 className="text-lg font-extrabold text-slate-800 mb-5 flex items-center gap-2">
+                  <BookOpen size={18} className="text-blue-500" /> Popular Courses
+                </h2>
+                <div className="flex flex-wrap gap-2">
+                  {country.courses.map((course) => (
+                    <span key={course} className="text-[12px] font-semibold text-blue-600 bg-blue-50 border border-blue-100 px-3 py-1.5 rounded-[5px]">
+                      {course}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Sidebar */}
+            <div className="flex flex-col gap-5">
+
+              {/* Quick Info */}
+              <motion.div {...fadeUp(0.1)} className="bg-white border border-slate-100 rounded-[5px] p-6">
+                <h3 className="text-sm font-extrabold text-slate-800 uppercase tracking-widest mb-5">Quick Info</h3>
+                <div className="flex flex-col gap-4">
+                  {[
+                    { icon: BadgeDollarSign, label: "Annual Fees", value: country.fees },
+                    { icon: Clock, label: "Duration", value: country.duration },
+                    { icon: GraduationCap, label: "Intake", value: country.intake },
+                    { icon: MapPin, label: "Visa", value: country.visa },
+                    { icon: Languages, label: "Language", value: country.language },
+                  ].map((item) => (
+                    <div key={item.label} className="flex items-start gap-3">
+                      <div className="w-8 h-8 rounded-[5px] bg-blue-50 flex items-center justify-center flex-shrink-0">
+                        <item.icon size={14} className="text-blue-500" />
+                      </div>
+                      <div>
+                        <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wide">{item.label}</p>
+                        <p className="text-sm font-semibold text-slate-700">{item.value}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* Apply CTA */}
+              <motion.div {...fadeUp(0.15)} className="bg-blue-600 rounded-[5px] p-6 relative overflow-hidden">
+                <div className="absolute -top-6 -right-6 w-24 h-24 rounded-full bg-white/5 pointer-events-none" />
+                <div className="relative z-10">
+                  <p className="text-xs font-bold text-blue-200 uppercase tracking-widest mb-2">Ready to Apply?</p>
+                  <h3 className="text-white font-extrabold text-[15px] mb-3">Start Your Journey to {country.name}</h3>
+                  <p className="text-blue-100 text-xs leading-relaxed mb-5">Our advisors will guide you for free.</p>
+                  <Link href="/apply" className="group flex items-center justify-center gap-2 bg-white text-blue-600 hover:bg-blue-50 px-4 py-3 rounded-[5px] font-bold text-sm transition-all w-full">
+                    Apply Now <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </div>
+              </motion.div>
+
+              {/* Contact */}
+              <motion.div {...fadeUp(0.2)} className="bg-slate-900 rounded-[5px] p-6">
+                <h3 className="text-white font-extrabold text-[14px] mb-4">Have Questions?</h3>
+                <div className="flex flex-col gap-3">
+                  <a href="tel:+60167495926" className="flex items-center gap-2.5 text-sm text-slate-400 hover:text-white transition-colors">
+                    <Phone size={13} className="text-blue-400" /> +60 16-749 5926
+                  </a>
+                  <a href="mailto:info@aboardstudy.com" className="flex items-center gap-2.5 text-sm text-slate-400 hover:text-white transition-colors">
+                    <Mail size={13} className="text-blue-400" /> info@aboardstudy.com
+                  </a>
+                </div>
+              </motion.div>
+
             </div>
           </div>
-        </aside>
+        </div>
+      </section>
 
-      </div>
     </div>
   );
 }

@@ -1,10 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Globe2, Sparkles, MapPin } from "lucide-react";
+import { ArrowRight, Globe2, Sparkles } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
+// ── Fixed Dummy Data with Precise Corner Radius ──
 const destinations = [
   {
     name: "Malaysia",
@@ -61,48 +62,51 @@ export default function DestinationsPage() {
     <div className="pt-32 pb-24 bg-white min-h-screen">
       <div className="max-w-7xl mx-auto px-6">
         
-        {/* Header */}
+        {/* Header Section (Polish & Tight Layout) */}
         <div className="text-center space-y-4 mb-20">
           <motion.div 
             initial={{ opacity: 0, scale: 0.8 }} 
             animate={{ opacity: 1, scale: 1 }}
-            className="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4"
+            className="w-16 h-16 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mx-auto mb-4" // Corrected to 10px manually
+            style={{ borderRadius: '10px' }} // Fallback manual set
           >
             <Globe2 size={32} />
           </motion.div>
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-7xl font-black text-slate-900 leading-tight"
+            className="text-5xl md:text-7xl font-black text-slate-900 leading-[1.1]" // Tight line height for premium look
           >
             Choose Your <span className="text-blue-600">Destination.</span>
           </motion.h1>
-          <p className="text-slate-500 font-medium max-w-2xl mx-auto text-lg">
+          <p className="text-slate-500 font-medium max-w-2xl mx-auto text-lg leading-relaxed">
             Explore globally recognized institutions across the globe. We partner 
             with the best to provide you the best education opportunities.
           </p>
         </div>
 
-        {/* Destinations Grid */}
+        {/* Destinations Grid (Corner Radius Fixed) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {destinations.map((dest, i) => (
             <motion.div
               key={dest.name}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }} // Ensures animation only happens once
               transition={{ delay: i * 0.1 }}
-              whileHover={{ y: -10 }}
-              className="group bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-blue-900/10 transition-all duration-500"
+              whileHover={{ y: -5 }} // Subtle hover effect
+              className="group bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-blue-900/10 transition-all duration-500" // Correted to 10px manually
+              style={{ borderRadius: '10px' }}
             >
-              {/* Image Header */}
-              <div className="relative h-60 w-full overflow-hidden">
+              {/* Image Header with Precise Corner Radius */}
+              <div className="relative h-60 w-full overflow-hidden" style={{ borderTopLeftRadius: '10px', borderTopRightRadius: '10px' }}>
                 <Image 
                   src={dest.image} 
                   alt={dest.name} 
                   fill 
-                  className="object-cover group-hover:scale-110 transition-transform duration-700"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700" // Subtle zoom
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent" />
                 <div className="absolute bottom-6 left-6 flex items-center gap-3">
                   <span className="text-4xl">{dest.flag}</span>
                   <div className="bg-white/20 backdrop-blur-md px-3 py-1 rounded-lg border border-white/30 text-[10px] font-black uppercase tracking-widest text-white">
@@ -111,15 +115,18 @@ export default function DestinationsPage() {
                 </div>
               </div>
 
-              {/* Content */}
+              {/* Content with Fixed Layout */}
               <div className="p-8 space-y-4">
-                <h3 className="text-3xl font-black text-slate-900">{dest.name}</h3>
-                <p className="text-slate-500 font-medium leading-relaxed">
+                <h3 className="text-3xl font-black text-slate-900 group-hover:text-blue-600 transition-colors">{dest.name}</h3>
+                <p className="text-slate-500 font-medium leading-relaxed h-[60px] line-clamp-2"> {/* Fixed height & line clamping */}
                   {dest.desc}
                 </p>
+                
+                {/* ── Active Link / Dynamic Route Support ── */}
                 <Link 
-                  href={`/destinations/${dest.name.toLowerCase().replace(/\s+/g, '-')}`}
-                  className="inline-flex items-center gap-2 bg-slate-50 group-hover:bg-blue-600 text-slate-400 group-hover:text-white px-6 py-3 rounded-xl font-black text-sm transition-all"
+                  href={`/destinations/${dest.name.toLowerCase().replace(/\s+/g, '-')}`} // Perfectly generates slugs (malaysia, united-kingdom, germany)
+                  className="inline-flex items-center justify-center gap-2 bg-slate-50 group-hover:bg-blue-600 text-slate-600 group-hover:text-white px-6 py-4 rounded-xl w-full font-black text-sm transition-all shadow-sm hover:shadow-blue-500/30" // Professional padding and full width
+                  style={{ borderRadius: '10px' }} // Manual corner set
                 >
                   Explore Now <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
@@ -128,28 +135,33 @@ export default function DestinationsPage() {
           ))}
         </div>
 
-        {/* CTA Section */}
+        {/* CTA Section (Precise Corner Radius & Full Polish) */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="mt-24 p-12 bg-slate-900 rounded-[3.5rem] text-center text-white space-y-6 relative overflow-hidden"
+          viewport={{ once: true }}
+          className="mt-24 p-12 bg-slate-900 rounded-2xl text-center text-white space-y-6 relative overflow-hidden" // Correted to 10px manually
+          style={{ borderRadius: '10px' }} // Manual corner set
         >
           <div className="relative z-10">
-            <h2 className="text-3xl md:text-5xl font-black">Confused about where to go?</h2>
-            <p className="text-slate-400 text-lg font-medium max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-5xl font-black leading-tight">Confused about where to go?</h2>
+            <p className="text-slate-400 text-lg font-medium max-w-2xl mx-auto leading-relaxed">
               Get a free consultation from our experts to find the best country 
               matching your profile and budget.
             </p>
             <div className="pt-6">
               <Link 
                 href="/apply" 
-                className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-5 rounded-2xl font-black text-lg transition-all shadow-xl shadow-blue-500/20 active:scale-95 inline-flex items-center gap-3"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-5 rounded-2xl font-black text-lg transition-all shadow-xl shadow-blue-500/30 active:scale-95 inline-flex items-center gap-3"
+                style={{ borderRadius: '10px' }} // Manual corner set
               >
                 Free Consultation <Sparkles size={20} />
               </Link>
             </div>
           </div>
-          <div className="absolute -left-20 -top-20 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl"></div>
+          {/* Subtle Background Glow */}
+          <div className="absolute -left-20 -top-20 w-80 h-80 bg-blue-600/20 rounded-full blur-3xl"></div>
+          <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl"></div>
         </motion.div>
 
       </div>

@@ -1,13 +1,13 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { Menu, X, ChevronDown, Plus, Minus, Phone, Mail } from "lucide-react";
-import Flag from "react-world-flags";
-import { motion, AnimatePresence } from "framer-motion";
 import logoImg from "@/assets/logo.png";
 import { useNavbar } from "@/hooks/useNavbar";
+import { AnimatePresence, motion } from "framer-motion";
+import { ChevronDown, Mail, Menu, Minus, Phone, Plus, X } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import Flag from "react-world-flags";
 
 const Navbar = () => {
   const { isOpen, setIsOpen, scrolled } = useNavbar();
@@ -51,10 +51,22 @@ const Navbar = () => {
       { name: "France", code: "FR" },
     ],
     universities: [
-      { name: "Public Universities", href: "/universities/publicUnivercity", icon: "🏛️" },
-      { name: "Private Universities", href: "/universities/privateUnivercity", icon: "🎓" },
+      {
+        name: "Public Universities",
+        href: "/universities/publicUnivercity",
+        icon: "🏛️",
+      },
+      {
+        name: "Private Universities",
+        href: "/universities/privateUnivercity",
+        icon: "🎓",
+      },
       { name: "Scholarships", href: "/universities/scholarships", icon: "💰" },
-      { name: "Entry Requirements", href: "/universities/requirements", icon: "📋" },
+      {
+        name: "Entry Requirements",
+        href: "/universities/requirements",
+        icon: "📋",
+      },
     ],
   };
 
@@ -101,7 +113,7 @@ const Navbar = () => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-[70px]">
-            {/* ── Logo ── */}
+            {/* ── Logo (Fixed: Added prefetch={false}) ── */}
             <Link
               href="/"
               className="flex-shrink-0 group"
@@ -111,6 +123,7 @@ const Navbar = () => {
                   window.scrollTo({ top: 0, behavior: "smooth" });
                 }
               }}
+              prefetch={false}
             >
               <Image
                 src={logoImg}
@@ -176,7 +189,7 @@ const Navbar = () => {
                         {menuItems.countries.map((c) => (
                           <Link
                             key={c.name}
-                            href={`/country/${c.name.toLowerCase().replace(" ", "-")}`}
+                            href={`/countries/${c.name.toLowerCase().replace(" ", "-")}`}
                             className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-blue-50 transition-all duration-150 group/item"
                             onClick={() => setActiveDropdown(null)}
                           >
@@ -301,7 +314,7 @@ const Navbar = () => {
               </Link>
             </div>
 
-            {/* ── Desktop CTA ── */}
+            {/* ── Desktop CTA (Fixed: Added prefetch={false}) ── */}
             <div className="hidden lg:flex items-center gap-3">
               <Link
                 href="/contact"
@@ -311,6 +324,7 @@ const Navbar = () => {
               </Link>
               <Link
                 href="/apply"
+                prefetch={false}
                 className="px-6 py-2.5 text-sm font-bold text-white bg-slate-900 hover:bg-blue-600 rounded-full shadow-md shadow-slate-900/20 hover:shadow-blue-600 hover:-translate-y-0.5 active:scale-95 transition-all duration-150"
               >
                 Apply Now
@@ -378,7 +392,7 @@ const Navbar = () => {
                         {menuItems.countries.map((c) => (
                           <Link
                             key={c.name}
-                            href={`/country/${c.name.toLowerCase().replace(" ", "-")}`}
+                            href={`/countries/${c.name.toLowerCase().replace(" ", "-")}`}
                             className="flex items-center gap-2 py-1.5 text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors"
                             onClick={() => setIsOpen(false)}
                           >
@@ -487,8 +501,10 @@ const Navbar = () => {
                   >
                     Free Consultation
                   </Link>
+                  {/* Fixed: Added prefetch={false} for Mobile Apply Now */}
                   <Link
                     href="/apply"
+                    prefetch={false}
                     className="w-full text-center py-3 rounded-xl font-bold text-white bg-slate-900 hover:bg-blue-900 shadow-md shadow-blue-500/20 active:scale-95 transition-all"
                     onClick={() => setIsOpen(false)}
                   >

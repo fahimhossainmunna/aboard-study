@@ -1,11 +1,9 @@
 import { StaticImageData } from "next/image";
-
+import React from "react";
 
 export type { Variants, Transition } from "framer-motion";
 
-// ─────────────────────────────────────────
 // 1. University Type
-// ─────────────────────────────────────────
 export interface University {
   id: number;
   name: string;
@@ -15,9 +13,7 @@ export interface University {
   logo?: string | StaticImageData;
 }
 
-// ─────────────────────────────────────────
 // 2. Success Story Type
-// ─────────────────────────────────────────
 export interface SuccessStory {
   id: number;
   title: string;
@@ -28,9 +24,7 @@ export interface SuccessStory {
   desc: string;
 }
 
-// ─────────────────────────────────────────
 // 3. Stat Card Type
-// ─────────────────────────────────────────
 export interface StatItem {
   label: string;
   value: number;
@@ -38,9 +32,7 @@ export interface StatItem {
   icon?: React.ElementType;
 }
 
-// ─────────────────────────────────────────
 // 4. Destination Type
-// ─────────────────────────────────────────
 export interface Destination {
   name: string;
   code: string;
@@ -48,10 +40,21 @@ export interface Destination {
   desc: string;
 }
 
-// ─────────────────────────────────────────
-// 5. Registration Form Type
-// ─────────────────────────────────────────
- export interface RegistrationFormData {
+// 5. Multi-Step Application Form Type (For Apply Page)
+export interface ApplicationFormData {
+  fullName: string;
+  email: string;
+  phone: string;
+  dob?: string;
+  qualification: string;
+  result: string;
+  university: string;
+  course: string;
+  status?: string;
+  applicationId?: string;
+}
+// 6. Registration Form Type
+export interface RegistrationFormData {
   fullName: string;
   email: string;
   phone: string;
@@ -59,25 +62,19 @@ export interface Destination {
   message?: string;
 }
 
-// ─────────────────────────────────────────
-// 6. Nav Link Type
-// ─────────────────────────────────────────
+// 7. Nav Link Type
 export interface NavLink {
   title: string;
   href: string;
 }
 
-// ─────────────────────────────────────────
-// 7. Country Menu Item (Navbar mega menu)
-// ─────────────────────────────────────────
+// 8. Country Menu Item
 export interface CountryMenuItem {
   name: string;
   code: string; 
 }
 
-// ─────────────────────────────────────────
-// 8. Dropdown Menu Item (About / University)
-// ─────────────────────────────────────────
+// 9. Dropdown Menu Item
 export interface DropdownMenuItem {
   name: string;
   href: string;
