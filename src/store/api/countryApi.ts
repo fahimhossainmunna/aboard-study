@@ -1,6 +1,6 @@
 import { baseApi } from "./baseApi";
 
-// Response-er jonno interface (Type safety-r jonno)
+
 export interface Country {
   id: string | number;
   slug: string;
@@ -36,7 +36,6 @@ export const countryApi = baseApi.injectEndpoints({
   }),
 });
 
-// Hooks auto-generated hoye jabe
 export const { 
   useGetCountriesQuery, 
   useGetCountryDetailsQuery 

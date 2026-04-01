@@ -9,7 +9,6 @@ export const applicationApi = baseApi.injectEndpoints({
         method: "POST",
         body: data,
       }),
-      // Noutun data submit hole list-ta refresh korbe
       invalidatesTags: ["Applications"],
     }),
 
@@ -22,13 +21,12 @@ export const applicationApi = baseApi.injectEndpoints({
       }),
     }),
 
-    // 3. Get All Applications (Admin Dashboard-er jonno)
+    // 3. Get All Applications
     getAllApplications: builder.query<any, void>({
       query: () => ({
         url: "/all-applications",
         method: "GET",
       }),
-      // Ei data-ta "Applications" tag-er under-e thakbe
       providesTags: ["Applications"],
     }),
   }),
