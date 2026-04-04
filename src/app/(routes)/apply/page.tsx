@@ -1,8 +1,9 @@
 "use client";
 
-import { courses, nextSteps, steps, universities } from "@/data/applyData";
+import { courses, nextSteps, steps, universities as staticUniversities } from "@/data/applyData";
 import { useMultiStep } from "@/hooks/useMultiStep";
 import { useSubmitApplicationMutation } from "@/store/api/applicationApi";
+import { useGetUniversitiesQuery } from "@/store/api/universityApi"; // New API Import
 import {
   ApplicationFormData,
   applicationSchema,
@@ -32,6 +33,10 @@ export default function ApplyPage() {
   } = useMultiStep(steps.length);
 
   const [submitApplication, { isLoading }] = useSubmitApplicationMutation();
+  
+  // ── DYNAMIC UNIVERSITY FETCH ──
+  const { data: dbUniversities, isLoading: uniLoading } = useGetUniversitiesQuery();
+  const universityList = (dbUniversities as any)?.data || [];
 
   const {
     register,
@@ -292,12 +297,23 @@ export default function ApplyPage() {
                           {...register("university")}
                           className="w-full px-4 py-3.5 rounded-[5px] bg-slate-50 border border-slate-200 text-sm outline-none"
                         >
-                          <option value="">Select university</option>
-                          {universities.map((u) => (
-                            <option key={u} value={u}>
-                              {u}
-                            </option>
-                          ))}
+                          <option value="">{uniLoading ? "Loading..." : "Select university"}</option>
+                          
+                          {/* ── DYNAMIC DATA MAPPING ── */}
+                          {universityList.length > 0 ? (
+                            universityList.map((u: any) => (
+                              <option key={u._id} value={u.name}>
+                                {u.name}
+                              </option>
+                            ))
+                          ) : (
+                            /* Fallback to static if DB is empty during transition */
+                            staticUniversities.map((u) => (
+                              <option key={u} value={u}>
+                                {u}
+                              </option>
+                            ))
+                          )}
                         </select>
                         {errors.university && (
                           <span className="text-red-500 text-[10px] font-bold uppercase">

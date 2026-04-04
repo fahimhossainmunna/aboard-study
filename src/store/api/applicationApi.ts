@@ -29,6 +29,25 @@ export const applicationApi = baseApi.injectEndpoints({
       }),
       providesTags: ["Applications"],
     }),
+
+    // 4. Update Application Status (EI NOTUN ENDPOINT TA ADD HOISE)
+    updateApplicationStatus: builder.mutation({
+      query: ({ id, status }) => ({
+        url: `/apply-status/${id}`,
+        method: "PATCH",
+        body: { status },
+      }),
+      invalidatesTags: ["Applications"], // Update hole list auto refresh hobe
+    }),
+
+    // 5. Delete Application
+    deleteApplication: builder.mutation({
+      query: (id: string) => ({
+        url: `/apply/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Applications"],
+    }),
   }),
   overrideExisting: true,
 });
@@ -37,4 +56,6 @@ export const {
   useSubmitApplicationMutation,
   useSubmitConsultationMutation,
   useGetAllApplicationsQuery,
+  useUpdateApplicationStatusMutation, // Export kora hoyeche
+  useDeleteApplicationMutation,
 } = applicationApi;
